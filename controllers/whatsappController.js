@@ -12,8 +12,8 @@ exports.sendMessage = async (req, res) => {
 
 exports.sendMedia = async (req, res) => {
     try {
-        const { number, media } = req.body;
-        const result = await whatsappService.sendMedia(number, media);
+        const { number, mediaUrl } = req.body;
+        const result = await whatsappService.sendMedia(number, mediaUrl);
         res.status(200).json(result);
     } catch (error) {
         res.status(500).json({ error: error.message });

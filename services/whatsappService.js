@@ -1,4 +1,5 @@
 const client = require('../index');
+const { MessageMedia } = require('whatsapp-web.js');
 
 exports.sendMessage = async (number, message) => {
     number = number.toString().includes('@c.us') ? number : `${number}@c.us`;
@@ -6,12 +7,10 @@ exports.sendMessage = async (number, message) => {
     return result;
 };
 
-exports.sendMedia = async (number, media) => {
+exports.sendMedia = async (number, mediaUrl) => {
     number = number.toString().includes('@c.us') ? number : `${number}@c.us`;
-    const mediaMessage = {
-        // Define media message structure here
-    };
-    const result = await client.sendMessage(number, mediaMessage);
+    const media = await MessageMedia.fromUrl(mediaUrl);
+    const result = await client.sendMessage(number, media);
     return result;
 };
 
